@@ -103,6 +103,12 @@ jobs:
           # Rename the final SARIF file
           mv sarif_template.json snippet-analysis.sarif
 
+      - name: Upload SARIF file as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: sarif-file
+          path: snippet-analysis.sarif
+
       - name: Generate PR comment with findings
         id: comment
         uses: actions/github-script@v6
