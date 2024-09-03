@@ -19,6 +19,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Print variable
+        run: |
+          echo ${{ github.event.pull_request.number }}
+
       - name: Download SARIF artifacts
         uses: actions/download-artifact@v3
         with:
