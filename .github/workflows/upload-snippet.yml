@@ -18,6 +18,12 @@ jobs:
       # This step checks out a copy of your repository.
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Download SARIF artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: sarif-file-${{ github.event.pull_request.number }}
+
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v3
         with:
