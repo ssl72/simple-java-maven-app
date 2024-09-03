@@ -1,7 +1,8 @@
 name: Upload SARIF
 
 on:
-  push:
+  pull_request:
+    types: [opened, reopened]
     branches:
       - ci
 
