@@ -106,7 +106,7 @@ jobs:
       - name: Upload SARIF file as artifact
         uses: actions/upload-artifact@v3
         with:
-          name: sarif-file-${{ github.event.pull_request.number }}
+          name: sarif-file
           path: snippet-analysis.sarif
 
       - name: Generate PR comment with findings
