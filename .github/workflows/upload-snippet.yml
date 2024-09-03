@@ -22,12 +22,14 @@ jobs:
       - name: Get the list of changed files
         id: changed-files
         run: |
-          # 获取当前分支和上一个提交的 SHA
-          CURRENT_SHA=$(git rev-parse HEAD)
-          PREVIOUS_SHA=$(git merge-base HEAD HEAD~1)
+          # 获取当前提交的 SHA
+          CURRENT_SHA=${GITHUB_SHA}
+          
+          # 获取当前提交的合并基准
+          MERGE_BASE=$(git merge-base HEAD $(git for-each-ref --format '%(objectname)' $(git for-each-ref --sort=-creatordate --count=2 refs/heads/)))
           
           # 列出变动的文件
-          FILES=$(git diff --name-only $PREVIOUS_SHA $CURRENT_SHA)
+          FILES=$(git diff --name-only $MERGE_BASE $CURRENT_SHA )
           echo "FILES=${FILES}" >> $GITHUB_ENV
 
       - name: Fetch Bearer Token
