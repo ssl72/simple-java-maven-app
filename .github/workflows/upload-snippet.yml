@@ -22,9 +22,8 @@ jobs:
       - name: Get the list of changed files
         id: changed-files
         run: |
-          
           # 列出变动的文件
-          FILES=$(git diff --name-only -r HEAD^1 HEAD)
+          FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }})
           echo "FILES=${FILES}" >> $GITHUB_ENV
 
       - name: Fetch Bearer Token
