@@ -162,11 +162,3 @@ jobs:
           git push || echo "No changes to commit"
 
 
-      - name: Upload SARIF file
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          # Path to SARIF file relative to the root of the repository
-          sarif_file: snippet-analysis.sarif
-          # Optional category for the results
-          # Used to differentiate multiple results for one commit
-          category: Snippet Analysis
